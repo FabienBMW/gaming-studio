@@ -18,7 +18,7 @@ public class RequestResult<T> {
     }
 
     public RequestResult<T> success(int code, String message, T data) {
-        return new RequestResult<T>(new Date(), data, code, RequestResultStatus.SUCCESS, message);
+        return new RequestResult<>(new Date(), data, code, RequestResultStatus.SUCCESS, message);
     }
 
 

@@ -1,25 +1,25 @@
 package loto.Studio.lotoservicegames.entities;
 
 import jakarta.persistence.*;
-import lombok.AllArgsConstructor;
-import lombok.Data;
-import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
+import lombok.*;
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
 
 import java.util.ArrayList;
+import java.util.List;
 
 @EqualsAndHashCode(callSuper = true)
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
+@Builder
 public class Category extends Auditable<String> {
 
     @Id
     @Column(name = "category_id")
-    private long id;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    private Long id;
 
     @Column(name = "name", unique = true)
     private String name;
@@ -30,9 +30,9 @@ public class Category extends Auditable<String> {
 
     @Fetch(value = FetchMode.SELECT)
     @ManyToMany(fetch = FetchType.LAZY)
-    private ArrayList<GainProperty> gainProperties;
+    private List<GainProperty> gainProperties;
 
     @Fetch(value = FetchMode.SELECT)
     @ManyToMany(fetch = FetchType.LAZY)
-    private ArrayList<GameProperty> gameProperties;
+    private List<GameProperty> gameProperties;
 }
